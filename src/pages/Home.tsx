@@ -1,16 +1,12 @@
 
-import { useState } from "react";
 import PageContainer from "@/components/layout/PageContainer";
 import WelcomeHeader from "@/components/dashboard/WelcomeHeader";
 import WeatherCard from "@/components/dashboard/WeatherCard";
 import DiseaseScanner from "@/components/dashboard/DiseaseScanner";
-import AIAssistant from "@/components/assistant/AIAssistant";
 import VoiceAssistantPanel from "@/components/voiceassistant/VoiceAssistantPanel";
 import FloatingActionButton from "@/components/common/FloatingActionButton";
 
 const Home = () => {
-  const [assistantOpen, setAssistantOpen] = useState(false);
-
   return (
     <PageContainer>
       <WelcomeHeader />
@@ -27,7 +23,7 @@ const Home = () => {
       
       <div className="mb-24"></div>
       
-      {/* Floating scanner button */}
+      {/* Floating buttons removed */}
       <FloatingActionButton />
     </PageContainer>
   );
