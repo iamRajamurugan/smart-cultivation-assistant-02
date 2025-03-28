@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Scanner from "./pages/Scanner";
 import ScannerResult from "./pages/ScannerResult";
 import Fertilizer from "./pages/Fertilizer";
-import Community from "./pages/Community";
 import Heatmap from "./pages/Heatmap";
 import NotFound from "./pages/NotFound";
 
@@ -25,7 +24,6 @@ const App = () => (
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/scanner/result" element={<ScannerResult />} />
           <Route path="/fertilizer" element={<Fertilizer />} />
-          <Route path="/community" element={<Community />} />
           <Route path="/heatmap" element={<Heatmap />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

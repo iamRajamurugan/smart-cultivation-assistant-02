@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Search, Leaf, Droplets, ArrowRight } from "lucide-react";
+import { Search, Leaf, Droplets } from "lucide-react";
 import PageContainer from "@/components/layout/PageContainer";
 import FertilizerRecommendation from "@/components/fertilizer/FertilizerRecommendation";
 
@@ -65,34 +65,6 @@ const Fertilizer = () => {
         
         <div className="mt-4">
           <FertilizerRecommendation diseaseName={selectedDisease} />
-        </div>
-        
-        <div className="mt-6">
-          <h3 className="text-lg font-bold mb-3 flex items-center">
-            <Droplets size={20} className="mr-2 text-farming-green" />
-            Additional Treatments
-          </h3>
-          
-          <div className="space-y-3">
-            {[
-              { name: "Organic Solution Guide", description: "Natural remedies for plant care", icon: "🌱" },
-              { name: "Crop Rotation Strategy", description: "Prevent disease recurrence", icon: "🔄" },
-              { name: "Water Management Tips", description: "Optimal irrigation practices", icon: "💧" },
-            ].map((treatment, index) => (
-              <div key={index} className="premium-card flex justify-between items-center">
-                <div className="flex items-center">
-                  <div className="h-10 w-10 rounded-full bg-farming-green/10 flex items-center justify-center mr-3">
-                    <span className="text-xl">{treatment.icon}</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">{treatment.name}</h4>
-                    <p className="text-xs text-gray-500">{treatment.description}</p>
-                  </div>
-                </div>
-                <ArrowRight size={18} className="text-farming-green" />
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </PageContainer>

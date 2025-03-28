@@ -1,110 +1,69 @@
 
 import { Card } from "@/components/ui/card";
-import { Info, Droplet, ArrowUpRight, AlertTriangle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Info, Droplet, ExternalLink, AlertTriangle } from "lucide-react";
+import { toast } from "sonner";
 
 interface FertilizerRecommendationProps {
   diseaseName: string;
 }
 
 const FertilizerRecommendation = ({ diseaseName }: FertilizerRecommendationProps) => {
-  // Sample data - in a real app this would come from an API call based on the disease
+  // Simplified data with single recommended fertilizer and Amazon link
   const diseaseInfo = {
     "Bacterial Leaf Blight": {
       description: "Bacterial Leaf Blight is a serious rice disease caused by Xanthomonas oryzae that leads to wilting and yellowing of leaves.",
       severity: "moderate",
-      fertilizers: [
-        {
-          name: "Copper Oxychloride",
-          usage: "Apply 2.5g/liter of water as a foliar spray",
-          effectiveness: 85,
-          organic: false,
-        },
-        {
-          name: "Bio-Fertilizer Mix",
-          usage: "Apply 5kg/acre in well-irrigated conditions",
-          effectiveness: 75,
-          organic: true,
-        },
-        {
-          name: "Potassium Supplement",
-          usage: "Apply 15kg/acre before flowering stage",
-          effectiveness: 65,
-          organic: false,
-        }
-      ]
+      fertilizer: {
+        name: "Copper Oxychloride",
+        usage: "Apply 2.5g/liter of water as a foliar spray",
+        effectiveness: 85,
+        organic: false,
+        amazonLink: "https://www.amazon.com/Southern-Ag-Liquid-Copper-Fungicide/dp/B000H7N66W/"
+      }
     },
     "Blast": {
       description: "Rice blast is a fungal disease that affects the leaves, stems, and panicles with diamond-shaped lesions.",
       severity: "severe",
-      fertilizers: [
-        {
-          name: "Tricyclazole",
-          usage: "Apply 6ml/10 liters of water",
-          effectiveness: 90,
-          organic: false,
-        },
-        {
-          name: "Neem Oil Solution",
-          usage: "Apply 5ml/liter of water weekly",
-          effectiveness: 70,
-          organic: true,
-        }
-      ]
+      fertilizer: {
+        name: "Tricyclazole",
+        usage: "Apply 6ml/10 liters of water",
+        effectiveness: 90,
+        organic: false,
+        amazonLink: "https://www.amazon.com/Fungicide-Tricyclazole-Blast-Control-Agriculture/dp/B08VHWNXR8/"
+      }
     },
     "Brown Spot": {
       description: "Brown spot is a fungal disease causing oval brown lesions on leaves. Often related to nutrient deficiency.",
       severity: "mild",
-      fertilizers: [
-        {
-          name: "Mancozeb",
-          usage: "Apply 2.5g/liter as preventive spray",
-          effectiveness: 80,
-          organic: false,
-        },
-        {
-          name: "Organic Compost Tea",
-          usage: "Apply as soil drench weekly",
-          effectiveness: 65,
-          organic: true,
-        }
-      ]
+      fertilizer: {
+        name: "Mancozeb",
+        usage: "Apply 2.5g/liter as preventive spray",
+        effectiveness: 80,
+        organic: false,
+        amazonLink: "https://www.amazon.com/Southern-Ag-Dithane-Mancozeb-Fungicide/dp/B000COT8J0/"
+      }
     },
     "Leaf Scald": {
       description: "Leaf scald appears as long, yellow-orange lesions with brownish margins, usually on older leaves.",
       severity: "moderate",
-      fertilizers: [
-        {
-          name: "Propiconazole",
-          usage: "Apply 1ml/liter of water",
-          effectiveness: 85,
-          organic: false,
-        },
-        {
-          name: "Sulfur Powder",
-          usage: "Dust 20kg/hectare during early morning",
-          effectiveness: 70,
-          organic: true,
-        }
-      ]
+      fertilizer: {
+        name: "Propiconazole",
+        usage: "Apply 1ml/liter of water",
+        effectiveness: 85,
+        organic: false,
+        amazonLink: "https://www.amazon.com/Propiconazole-Fungicide-Heritage-Fungicide-Alternative/dp/B095KKHMSR/"
+      }
     },
     "Sheath Blight": {
       description: "Sheath blight appears as oval lesions on leaf sheaths with gray-white centers and brown margins.",
       severity: "severe",
-      fertilizers: [
-        {
-          name: "Hexaconazole",
-          usage: "Apply 2ml/liter of water",
-          effectiveness: 90,
-          organic: false,
-        },
-        {
-          name: "Trichoderma Solution",
-          usage: "Apply 5g/liter as soil treatment",
-          effectiveness: 75,
-          organic: true,
-        }
-      ]
+      fertilizer: {
+        name: "Hexaconazole",
+        usage: "Apply 2ml/liter of water",
+        effectiveness: 90,
+        organic: false,
+        amazonLink: "https://www.amazon.com/Hexaconazole-5-Systemic-Fungicide-100/dp/B08M5GVHFR/"
+      }
     }
   };
 
@@ -125,6 +84,11 @@ const FertilizerRecommendation = ({ diseaseName }: FertilizerRecommendationProps
     return "bg-orange-500";
   };
 
+  const handleBuyNow = () => {
+    window.open(currentDisease.fertilizer.amazonLink, '_blank');
+    toast.success("Opening Amazon product page");
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-sm p-4">
       <div className="mb-4">
@@ -139,51 +103,50 @@ const FertilizerRecommendation = ({ diseaseName }: FertilizerRecommendationProps
         <div className="mt-3 p-3 bg-farming-green/5 rounded-lg border border-farming-green/10">
           <h4 className="font-medium text-farming-green flex items-center">
             <Info size={16} className="mr-2" />
-            Recommended Solutions
+            Recommended Solution
           </h4>
         </div>
       </div>
       
-      <div className="space-y-3 mt-4">
-        {currentDisease.fertilizers.map((fertilizer, index) => (
-          <Card key={index} className="p-3 border border-gray-100">
-            <div className="flex justify-between items-start">
-              <div className="flex items-start">
-                <div className={`h-10 w-10 rounded-full ${fertilizer.organic ? 'bg-farming-green/10' : 'bg-farming-sky/10'} flex items-center justify-center mr-3`}>
-                  <Droplet size={20} className={fertilizer.organic ? 'text-farming-green' : 'text-farming-sky'} />
+      <Card className="p-4 border border-gray-100 mb-4">
+        <div className="flex justify-between items-start">
+          <div className="flex items-start">
+            <div className={`h-12 w-12 rounded-full ${currentDisease.fertilizer.organic ? 'bg-farming-green/10' : 'bg-farming-sky/10'} flex items-center justify-center mr-3`}>
+              <Droplet size={24} className={currentDisease.fertilizer.organic ? 'text-farming-green' : 'text-farming-sky'} />
+            </div>
+            <div>
+              <div className="flex items-center">
+                <h4 className="font-semibold text-lg">{currentDisease.fertilizer.name}</h4>
+                {currentDisease.fertilizer.organic && (
+                  <span className="ml-2 text-xs bg-farming-green/10 text-farming-green px-2 py-0.5 rounded-full">
+                    Organic
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-gray-700 mt-1">{currentDisease.fertilizer.usage}</p>
+              
+              <div className="mt-3 flex items-center">
+                <div className="text-xs mr-2">Effectiveness:</div>
+                <div className="w-28 h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full ${getEffectivenessClass(currentDisease.fertilizer.effectiveness)}`}
+                    style={{width: `${currentDisease.fertilizer.effectiveness}%`}}
+                  ></div>
                 </div>
-                <div>
-                  <div className="flex items-center">
-                    <h4 className="font-semibold">{fertilizer.name}</h4>
-                    {fertilizer.organic && (
-                      <span className="ml-2 text-xs bg-farming-green/10 text-farming-green px-2 py-0.5 rounded-full">
-                        Organic
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1">{fertilizer.usage}</p>
-                  
-                  <div className="mt-2 flex items-center">
-                    <div className="text-xs mr-2">Effectiveness:</div>
-                    <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full ${getEffectivenessClass(fertilizer.effectiveness)}`}
-                        style={{width: `${fertilizer.effectiveness}%`}}
-                      ></div>
-                    </div>
-                    <div className="text-xs ml-2 font-medium">{fertilizer.effectiveness}%</div>
-                  </div>
-                </div>
+                <div className="text-xs ml-2 font-medium">{currentDisease.fertilizer.effectiveness}%</div>
               </div>
             </div>
-          </Card>
-        ))}
-      </div>
+          </div>
+        </div>
+      </Card>
       
-      <Link to="/expert-advice" className="mt-4 w-full bg-farming-green text-white py-3 rounded-lg font-medium shadow-md flex items-center justify-center">
-        Get Expert Advice
-        <ArrowUpRight size={16} className="ml-1" />
-      </Link>
+      <button 
+        onClick={handleBuyNow}
+        className="w-full bg-farming-gold text-white py-3 rounded-lg font-medium shadow-md flex items-center justify-center transition-all hover:bg-farming-gold-dark"
+      >
+        Buy on Amazon
+        <ExternalLink size={16} className="ml-2" />
+      </button>
 
       <div className="mt-4 bg-farming-gold/10 rounded-lg p-3">
         <p className="text-sm font-medium text-farming-gold-dark flex items-center">
