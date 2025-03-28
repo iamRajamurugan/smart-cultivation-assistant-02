@@ -25,10 +25,10 @@ const FloatingActionButton = () => {
       {/* Chat Button */}
       <button
         onClick={() => setAssistantOpen(true)}
-        className="fixed bottom-24 left-4 z-20 h-14 w-14 rounded-full bg-farming-sky text-white shadow-lg flex items-center justify-center"
+        className="fixed bottom-24 left-4 z-20 h-14 w-14 rounded-full bg-farming-green text-white shadow-lg flex items-center justify-center"
         aria-label="Open AI Assistant"
       >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-farming-sky to-blue-500 opacity-90"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-farming-green-dark to-farming-green-light opacity-90"></div>
         <MessageCircle size={22} className="relative z-10" />
       </button>
       

@@ -29,12 +29,6 @@ const Home = () => {
       
       {/* Floating scanner button */}
       <FloatingActionButton />
-      
-      {/* AI Assistant */}
-      <AIAssistant 
-        isOpen={assistantOpen} 
-        onClose={() => setAssistantOpen(false)} 
-      />
     </PageContainer>
   );
 };
