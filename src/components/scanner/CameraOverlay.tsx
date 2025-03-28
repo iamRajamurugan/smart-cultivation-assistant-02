@@ -25,7 +25,7 @@ const CameraOverlay = () => {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-farming-green"></div>
               
               <div className="text-white text-center">
-                <div className="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center mb-2">
+                <div className="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center mb-2 pulse-ring">
                   <Mic className="text-white/90" size={24} />
                 </div>
                 <p className="text-sm font-medium">Scanning...</p>
@@ -59,8 +59,11 @@ const CameraOverlay = () => {
       
       {/* Bottom controls */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-        <Link to="/scanner/result" className="h-16 w-16 rounded-full bg-white flex items-center justify-center shadow-lg">
-          <div className="h-14 w-14 rounded-full bg-farming-green flex items-center justify-center">
+        <Link 
+          to="/scanner/result" 
+          className="h-16 w-16 rounded-full bg-gradient-to-tr from-farming-green to-farming-green-light flex items-center justify-center shadow-lg glow-effect"
+        >
+          <div className="h-14 w-14 rounded-full bg-white/20 flex items-center justify-center">
             <div className="h-10 w-10 rounded-full bg-white/20 animate-pulse-gentle"></div>
           </div>
         </Link>

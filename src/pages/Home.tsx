@@ -6,6 +6,8 @@ import WeatherCard from "@/components/dashboard/WeatherCard";
 import DiseaseScanner from "@/components/dashboard/DiseaseScanner";
 import CropPricesList from "@/components/dashboard/CropPricesList";
 import AIAssistant from "@/components/assistant/AIAssistant";
+import VoiceAssistantPanel from "@/components/voiceassistant/VoiceAssistantPanel";
+import FloatingActionButton from "@/components/common/FloatingActionButton";
 import { MessageCircle } from "lucide-react";
 
 const Home = () => {
@@ -19,11 +21,18 @@ const Home = () => {
         <WeatherCard />
       </div>
       
+      <div className="mx-4 mt-6">
+        <VoiceAssistantPanel />
+      </div>
+      
       <DiseaseScanner />
       
       <CropPricesList />
       
-      <div className="mb-20"></div>
+      <div className="mb-24"></div>
+      
+      {/* Floating scanner button */}
+      <FloatingActionButton />
       
       {/* Floating AI assistant button */}
       <button

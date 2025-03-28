@@ -1,5 +1,5 @@
 
-import { Home, Camera, BarChart3, MessageSquare, Map } from "lucide-react";
+import { Home, BarChart3, MessageSquare, Map } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNavigation = () => {
@@ -8,7 +8,6 @@ const BottomNavigation = () => {
 
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
-    { path: "/scanner", icon: Camera, label: "Scanner" },
     { path: "/market", icon: BarChart3, label: "Market" },
     { path: "/community", icon: MessageSquare, label: "Community" },
     { path: "/heatmap", icon: Map, label: "Heatmap" },
@@ -21,21 +20,25 @@ const BottomNavigation = () => {
           <Link 
             key={item.path} 
             to={item.path}
-            className={`flex flex-col items-center justify-center w-1/5 py-1 ${
+            className={`flex flex-col items-center justify-center w-1/4 py-1 ${
               currentPath === item.path 
                 ? "text-farming-green" 
                 : "text-gray-500"
             }`}
           >
-            <item.icon 
-              size={24} 
-              className={`mb-1 ${
-                currentPath === item.path 
-                  ? "animate-scale-in" 
-                  : ""
-              }`} 
-            />
-            <span className="text-xs font-medium">{item.label}</span>
+            <div className={`flex items-center justify-center rounded-full p-1.5 ${
+              currentPath === item.path ? "bg-farming-green/10" : ""
+            }`}>
+              <item.icon 
+                size={22} 
+                className={`${
+                  currentPath === item.path 
+                    ? "animate-scale-in" 
+                    : ""
+                }`} 
+              />
+            </div>
+            <span className="text-xs font-medium mt-0.5">{item.label}</span>
           </Link>
         ))}
       </div>

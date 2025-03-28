@@ -11,13 +11,15 @@ const DiseaseScanner = () => {
       </h2>
       <Link 
         to="/scanner"
-        className="relative block rounded-xl overflow-hidden shadow-md bg-gradient-to-r from-farming-green to-farming-green-dark text-white h-32"
+        className="relative block rounded-xl overflow-hidden shadow-lg bg-gradient-to-r from-farming-green to-farming-green-dark text-white h-36"
       >
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative h-full flex flex-col items-center justify-center">
-          <Camera size={40} className="mb-2 animate-pulse-gentle" />
-          <p className="font-medium">Scan Your Crops</p>
-          <p className="text-xs opacity-90">Tap to open camera</p>
+          <div className="h-20 w-20 rounded-full bg-white/20 flex items-center justify-center mb-2 pulse-ring">
+            <Camera size={42} className="animate-pulse-gentle" />
+          </div>
+          <p className="font-semibold text-lg">Scan Your Crops</p>
+          <p className="text-sm opacity-90">Tap to detect plant diseases</p>
         </div>
       </Link>
     </div>
