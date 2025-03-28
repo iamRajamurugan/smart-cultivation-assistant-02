@@ -1,5 +1,5 @@
 
-import { Home, BarChart3, MessageSquare, Map } from "lucide-react";
+import { Home, MessageCircle, Leaf, Map } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNavigation = () => {
@@ -8,8 +8,8 @@ const BottomNavigation = () => {
 
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
-    { path: "/market", icon: BarChart3, label: "Market" },
-    { path: "/community", icon: MessageSquare, label: "Community" },
+    { path: "/fertilizer", icon: Leaf, label: "Fertilizer" },
+    { path: "/community", icon: MessageCircle, label: "Chat" },
     { path: "/heatmap", icon: Map, label: "Heatmap" },
   ];
 

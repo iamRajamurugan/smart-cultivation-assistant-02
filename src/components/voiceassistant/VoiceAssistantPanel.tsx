@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Mic, MicOff, Volume2 } from "lucide-react";
+import { Mic, MicOff, Volume2, Wand2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const VoiceAssistantPanel = () => {
@@ -20,7 +20,7 @@ const VoiceAssistantPanel = () => {
   };
   
   return (
-    <Card className="mb-6 overflow-hidden gradient-card border-0 shadow-md">
+    <Card className="mb-6 overflow-hidden border-0 shadow-md bg-gradient-to-r from-white to-farming-green/5">
       <CardContent className="p-4">
         <div className="flex items-start">
           <div className="flex-1">
@@ -35,27 +35,30 @@ const VoiceAssistantPanel = () => {
             </p>
             
             {lastCommand && (
-              <div className="bg-farming-green/5 p-2 rounded-lg text-sm mb-2 border border-farming-green/10">
-                <p className="font-medium">I heard: "{lastCommand}"</p>
+              <div className="bg-farming-green/5 p-3 rounded-lg text-sm mb-3 border border-farming-green/10">
+                <p className="font-medium flex items-center">
+                  <Wand2 size={14} className="mr-2 text-farming-gold" />
+                  I heard: "{lastCommand}"
+                </p>
               </div>
             )}
             
-            <div className="flex flex-wrap gap-2 mt-2">
-              <span className="text-xs bg-farming-green/10 text-farming-green px-2 py-1 rounded-full">
+            <div className="flex flex-wrap gap-2 mt-3">
+              <span className="text-xs bg-farming-green/10 text-farming-green px-3 py-1.5 rounded-full font-medium">
                 "Open scanner"
               </span>
-              <span className="text-xs bg-farming-green/10 text-farming-green px-2 py-1 rounded-full">
+              <span className="text-xs bg-farming-green/10 text-farming-green px-3 py-1.5 rounded-full font-medium">
                 "Check weather"
               </span>
-              <span className="text-xs bg-farming-green/10 text-farming-green px-2 py-1 rounded-full">
-                "Show prices"
+              <span className="text-xs bg-farming-green/10 text-farming-green px-3 py-1.5 rounded-full font-medium">
+                "Show fertilizers"
               </span>
             </div>
           </div>
           
           <button 
             onClick={toggleListening}
-            className={`h-16 w-16 rounded-full flex items-center justify-center shadow-lg ml-2 ${
+            className={`h-16 w-16 rounded-full flex items-center justify-center shadow-lg ml-3 ${
               isListening
                 ? "bg-status-severe text-white animate-pulse"
                 : "bg-farming-green text-white glow-effect"
@@ -63,10 +66,14 @@ const VoiceAssistantPanel = () => {
             aria-label={isListening ? "Stop listening" : "Start listening"}
           >
             {isListening ? (
-              <MicOff size={28} />
+              <div className="relative w-full h-full flex items-center justify-center">
+                <MicOff size={28} className="z-10" />
+                <div className="absolute inset-0 bg-status-severe rounded-full opacity-80"></div>
+              </div>
             ) : (
               <>
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-farming-green to-farming-green-light opacity-80"></div>
+                <div className="absolute inset-0 rounded-full pulse-ring"></div>
                 <Mic size={28} className="relative z-10" />
               </>
             )}
