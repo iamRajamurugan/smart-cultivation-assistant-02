@@ -25,6 +25,7 @@ const BottomNavigation = () => {
                 ? "text-farming-green" 
                 : "text-gray-500"
             }`}
+            aria-label={`Navigate to ${item.label}`}
           >
             <div className={`flex items-center justify-center rounded-full p-1.5 ${
               currentPath === item.path ? "bg-farming-green/10" : ""

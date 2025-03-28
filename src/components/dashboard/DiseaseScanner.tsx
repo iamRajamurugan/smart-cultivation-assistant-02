@@ -11,7 +11,7 @@ const DiseaseScanner = () => {
       </h2>
       <Link 
         to="/scanner"
-        className="relative block rounded-xl overflow-hidden shadow-lg bg-gradient-to-r from-farming-green to-farming-green-dark text-white h-36"
+        className="relative block rounded-xl overflow-hidden shadow-md bg-gradient-to-r from-farming-green to-farming-green-dark text-white h-36"
       >
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative h-full flex flex-col items-center justify-center">

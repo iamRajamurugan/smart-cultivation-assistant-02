@@ -8,7 +8,6 @@ import CropPricesList from "@/components/dashboard/CropPricesList";
 import AIAssistant from "@/components/assistant/AIAssistant";
 import VoiceAssistantPanel from "@/components/voiceassistant/VoiceAssistantPanel";
 import FloatingActionButton from "@/components/common/FloatingActionButton";
-import { MessageCircle } from "lucide-react";
 
 const Home = () => {
   const [assistantOpen, setAssistantOpen] = useState(false);
@@ -34,14 +33,7 @@ const Home = () => {
       {/* Floating scanner button */}
       <FloatingActionButton />
       
-      {/* Floating AI assistant button */}
-      <button
-        onClick={() => setAssistantOpen(true)}
-        className="fixed bottom-20 right-4 h-14 w-14 rounded-full bg-farming-gold text-farming-green-dark shadow-lg flex items-center justify-center z-10"
-      >
-        <MessageCircle size={24} />
-      </button>
-      
+      {/* AI Assistant */}
       <AIAssistant 
         isOpen={assistantOpen} 
         onClose={() => setAssistantOpen(false)} 
