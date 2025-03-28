@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Search, Leaf, DropletPlus, ArrowRight } from "lucide-react";
+import { Search, Leaf, Droplets, ArrowRight } from "lucide-react";
 import PageContainer from "@/components/layout/PageContainer";
 import FertilizerRecommendation from "@/components/fertilizer/FertilizerRecommendation";
 
@@ -42,7 +42,7 @@ const Fertilizer = () => {
             Select Disease
           </h2>
           <button className="flex items-center text-sm text-gray-600">
-            <DropletPlus size={16} className="mr-1" />
+            <Droplets size={16} className="mr-1" />
             All Solutions
           </button>
         </div>
@@ -69,7 +69,7 @@ const Fertilizer = () => {
         
         <div className="mt-6">
           <h3 className="text-lg font-bold mb-3 flex items-center">
-            <DropletPlus size={20} className="mr-2 text-farming-green" />
+            <Droplets size={20} className="mr-2 text-farming-green" />
             Additional Treatments
           </h3>
           
