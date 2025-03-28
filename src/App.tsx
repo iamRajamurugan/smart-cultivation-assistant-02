@@ -11,6 +11,7 @@ import ScannerResult from "./pages/ScannerResult";
 import Fertilizer from "./pages/Fertilizer";
 import Heatmap from "./pages/Heatmap";
 import Community from "./pages/Community";
+import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/fertilizer" element={<Fertilizer />} />
           <Route path="/heatmap" element={<Heatmap />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
