@@ -1,8 +1,17 @@
 
 import { MessageSquare, Heart, Share2, MoreVertical } from "lucide-react";
-import { useState } from "react";
+import CommentSection from "./CommentSection";
 
-interface CommunityPostProps {
+interface Comment {
+  id: number;
+  author: string;
+  authorAvatar: string;
+  content: string;
+  timeAgo: string;
+}
+
+interface Post {
+  id: number;
   author: string;
   authorAvatar: string;
   timeAgo: string;
@@ -11,26 +20,20 @@ interface CommunityPostProps {
   likes: number;
   comments: number;
   isLiked?: boolean;
+  commentsList?: Comment[];
+}
+
+interface CommunityPostProps {
+  post: Post;
+  onLikeToggle: () => void;
+  onCommentAdded: (comment: Comment) => void;
 }
 
 const CommunityPost = ({
-  author,
-  authorAvatar,
-  timeAgo,
-  content,
-  imageUrl,
-  likes,
-  comments,
-  isLiked = false,
+  post,
+  onLikeToggle,
+  onCommentAdded
 }: CommunityPostProps) => {
-  const [liked, setLiked] = useState(isLiked);
-  const [likeCount, setLikeCount] = useState(likes);
-  
-  const handleLike = () => {
-    setLiked(!liked);
-    setLikeCount(liked ? likeCount - 1 : likeCount + 1);
-  };
-  
   return (
     <div className="bg-white rounded-xl shadow-sm mb-4 overflow-hidden">
       {/* Post header */}
@@ -38,14 +41,14 @@ const CommunityPost = ({
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-full overflow-hidden mr-3">
             <img 
-              src={authorAvatar} 
-              alt={author} 
+              src={post.authorAvatar} 
+              alt={post.author} 
               className="h-full w-full object-cover"
             />
           </div>
           <div>
-            <h3 className="font-semibold">{author}</h3>
-            <p className="text-xs text-gray-500">{timeAgo}</p>
+            <h3 className="font-semibold">{post.author}</h3>
+            <p className="text-xs text-gray-500">{post.timeAgo}</p>
           </div>
         </div>
         <button className="h-8 w-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
@@ -55,11 +58,11 @@ const CommunityPost = ({
       
       {/* Post content */}
       <div className="px-4 pb-3">
-        <p className="text-sm mb-3">{content}</p>
-        {imageUrl && (
+        <p className="text-sm mb-3">{post.content}</p>
+        {post.imageUrl && (
           <div className="rounded-lg overflow-hidden mb-3">
             <img 
-              src={imageUrl} 
+              src={post.imageUrl} 
               alt="Post visual" 
               className="w-full h-auto"
             />
@@ -71,26 +74,35 @@ const CommunityPost = ({
       <div className="flex items-center justify-between border-t border-gray-100 px-2">
         <button 
           className={`flex items-center justify-center py-2 px-3 text-sm ${
-            liked ? "text-farming-green" : "text-gray-600"
+            post.isLiked ? "text-farming-green" : "text-gray-600"
           }`}
-          onClick={handleLike}
+          onClick={onLikeToggle}
         >
           <Heart 
             size={18} 
-            className={`mr-1.5 ${liked ? "fill-farming-green" : ""}`} 
+            className={`mr-1.5 ${post.isLiked ? "fill-farming-green" : ""}`} 
           />
-          <span>{likeCount}</span>
+          <span>{post.likes}</span>
         </button>
         
         <button className="flex items-center justify-center py-2 px-3 text-sm text-gray-600">
           <MessageSquare size={18} className="mr-1.5" />
-          <span>{comments}</span>
+          <span>{post.comments}</span>
         </button>
         
         <button className="flex items-center justify-center py-2 px-3 text-sm text-gray-600">
           <Share2 size={18} className="mr-1.5" />
           <span>Share</span>
         </button>
+      </div>
+      
+      {/* Comments section */}
+      <div className="px-4 pb-4">
+        <CommentSection 
+          postId={post.id}
+          comments={post.commentsList || []}
+          onCommentAdded={(postId, comment) => onCommentAdded(comment)}
+        />
       </div>
     </div>
   );

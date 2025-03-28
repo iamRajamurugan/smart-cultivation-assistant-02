@@ -1,5 +1,5 @@
 
-import { Home, Leaf, Map, MessageCircle } from "lucide-react";
+import { Home, Leaf, Map, MessageCircle, Users } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import AIAssistant from "@/components/assistant/AIAssistant";
@@ -17,6 +17,7 @@ const BottomNavigation = () => {
       onClick: () => setAssistantOpen(true) 
     },
     { path: "/fertilizer", icon: Leaf, label: "Fertilizer" },
+    { path: "/community", icon: Users, label: "Community" },
     { path: "/heatmap", icon: Map, label: "Heatmap" },
   ];
 
@@ -29,7 +30,7 @@ const BottomNavigation = () => {
               <Link 
                 key={index} 
                 to={item.path}
-                className={`flex flex-col items-center justify-center w-1/4 py-1 ${
+                className={`flex flex-col items-center justify-center w-1/5 py-1 ${
                   currentPath === item.path 
                     ? "text-farming-green" 
                     : "text-gray-500"
@@ -54,10 +55,10 @@ const BottomNavigation = () => {
               <button
                 key={index}
                 onClick={item.onClick}
-                className="flex flex-col items-center justify-center w-1/4 py-1 text-farming-sky"
+                className="flex flex-col items-center justify-center w-1/5 py-1 text-farming-green"
                 aria-label={item.label}
               >
-                <div className="flex items-center justify-center rounded-full p-1.5 bg-farming-sky/10">
+                <div className="flex items-center justify-center rounded-full p-1.5 bg-farming-green/10">
                   <item.icon size={22} />
                 </div>
                 <span className="text-xs font-medium mt-0.5">{item.label}</span>
